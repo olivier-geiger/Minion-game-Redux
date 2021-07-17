@@ -17,4 +17,3 @@ Cette commande lancera votre serveur de développement. Vous pourrez ainsi trava
 ## Un problème ?
 
 Ce projet a été concocté par notre équipe, mais si vous rencontrez le moindre problème, n'hésitez pas à nous contacter via notre [formulaire de contact](https://believemy.com/contact).
-# Minion-game-Redux

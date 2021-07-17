@@ -23,3 +23,8 @@
 .App .minions {
   font-weight: bold;
 }
+
+.App .result {
+  display: flex;
+  justify-content: space-between;
+}

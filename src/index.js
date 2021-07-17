@@ -1,23 +1,31 @@
-// library
+// Librairies
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 // import
 import './index.css';
 
-// Component
+// Composant
 import App from './App';
 
 // Redux
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import reducer from './store/minion';
+import { createStore, combineReducers } from 'redux';
+import minionsReducer from './store/reducers/minions';
+import saveReducer from './store/reducers/save';
 
+// Combine les reducers
+const reducer = combineReducers({
+  minion: minionsReducer,
+  save: saveReducer
+});
+
+// store
 const store = createStore(reducer);
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root'),
+    <Provider store={store}>
+      <App />
+    </Provider>,
+  document.getElementById('root')
 );

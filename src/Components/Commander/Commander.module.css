@@ -22,3 +22,8 @@
 .Commander button:hover {
     background: rgba(251,233,64,.95);
 }
+
+.Commander button:nth-of-type(5) {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}

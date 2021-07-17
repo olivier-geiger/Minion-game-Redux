@@ -1,10 +1,10 @@
-// library
-import React, { useState } from 'react';
+// Librairies
+import React from 'react';
 
 // import
 import classes from './App.module.css';
 
-// Component
+// Composants
 import Header from './Components/Header/Header';
 import Commander from './Components/Commander/Commander';
 
@@ -12,6 +12,18 @@ import Commander from './Components/Commander/Commander';
 import { connect } from 'react-redux';
 
 function App(props) {
+  let history;
+
+  if (props.history && props.history != '') {
+    history = props.history.map(result => (
+      <div key={result.id} className={classes.result}>
+        <span>
+          <b>{result.value}</b> infiltrés
+        </span>
+        Le {new Date(result.id).toLocaleString('fr-FR')}
+      </div>
+    ));
+  }
 
   return (
     <div className={classes.App}>
@@ -27,18 +39,24 @@ function App(props) {
         </div>
 
         <Commander />
+
+        {props.history && props.history != '' ? (
+          <div className={classes.content}>
+            <h2>Tableau des infiltrations</h2>
+            {history}
+          </div>
+        ) : null}
       </div>
     </div>
   );
 }
 
-// mapStateToProps
+// Abonnement au state
 const mapStateToProps = state => {
   return {
-    minions: state.minions,
+    minions: state.minion.minions,
+    history: state.save.history,
   };
 };
-
-// mapDispatchToProps
 
 export default connect(mapStateToProps)(App);
