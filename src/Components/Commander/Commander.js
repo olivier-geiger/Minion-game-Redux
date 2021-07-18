@@ -6,7 +6,7 @@ import classes from './Commander.module.css';
 
 // Redux
 import { connect } from 'react-redux';
-import actionTypes from '../../store/actions';
+import * as actionCreators from '../../store/actions/index';
 
 function Commander(props) {
   return (
@@ -14,8 +14,12 @@ function Commander(props) {
       <button onClick={props.createMinion}>Créer un minion</button>
       <button onClick={props.destroyMinion}>Détruire un minion</button>
       <button onClick={() => props.createTeam(5)}>Créer une équipe de 5 minions</button>
-      <button onClick={() => props.destroyTeam(5)}>Détruire une équipe de 5 minions</button>
-      <button onClick={() => props.save(props.minions)}>Stocker le nombre d'infiltrés</button>
+      <button onClick={() => props.destroyTeam(5)}>
+        Détruire une équipe de 5 minions
+      </button>
+      <button onClick={() => props.save(props.minions)}>
+        Stocker le nombre d'infiltrés
+      </button>
     </div>
   );
 }
@@ -23,18 +27,18 @@ function Commander(props) {
 // Abonnement au state
 const mapStateToProps = state => {
   return {
-    minions: state.minion.minions
+    minions: state.minion.minions,
   };
 };
 
 // Récupérer les actions
 const mapDispatchToProps = dispatch => {
   return {
-    createMinion: () => dispatch({type: actionTypes.CREATE_MINION}),
-    destroyMinion: () => dispatch({type: actionTypes.DESTROY_MINION}),
-    createTeam: (value) => dispatch({type: actionTypes.CREATE_TEAM, value: value}),
-    destroyTeam: (value) => dispatch({type: actionTypes.DESTROY_TEAM, value: value}),
-    save: (value) => dispatch({type: actionTypes.SAVE, value: value})
+    createMinion: () => dispatch(actionCreators.createMinion()),
+    destroyMinion: () => dispatch(actionCreators.destroyMinion()),
+    createTeam: value => dispatch(actionCreators.createTeam(value)),
+    destroyTeam: value => dispatch(actionCreators.destroyTeam(value)),
+    save: value => dispatch(actionCreators.save(value)),
   };
 };
 

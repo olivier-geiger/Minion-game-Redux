@@ -1,4 +1,4 @@
-import actionTypes from '../actions';
+import actionTypes from '../actions/actionTypes';
 
 const initialState = {
   minions: 0,
@@ -21,6 +21,10 @@ const reducer = (state = initialState, action) => {
     case actionTypes.DESTROY_TEAM:
       return {
         minions: state.minions - action.value,
+      };
+    case actionTypes.AUTO_ENROLL:
+      return {
+        minions: state.minions + action.value,
       };
     default:
       return state;

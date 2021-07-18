@@ -8,7 +8,7 @@ import logo from '../../logo.png';
 function Header() {
   return (
     <header className={classes.Header}>
-        <img src={logo} alt="logo" />
+      <img src={logo} alt="logo" />
     </header>
   );
 }

@@ -1,5 +1,5 @@
 // Librairies
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // import
 import classes from './App.module.css';
@@ -10,8 +10,13 @@ import Commander from './Components/Commander/Commander';
 
 // Redux
 import { connect } from 'react-redux';
+import * as actionCreators from './store/actions/index';
 
 function App(props) {
+  useEffect(() => {
+    props.autoEnroll(props.minions);
+  }, []);
+
   let history;
 
   if (props.history && props.history != '') {
@@ -59,4 +64,11 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(App);
+// Récupérer les action
+const mapDispatchToProps = dispatch => {
+  return {
+    autoEnroll: minions => dispatch(actionCreators.autoEnroll(minions)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

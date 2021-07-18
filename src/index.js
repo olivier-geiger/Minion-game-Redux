@@ -10,7 +10,8 @@ import App from './App';
 
 // Redux
 import { Provider } from 'react-redux';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk'
 import minionsReducer from './store/reducers/minions';
 import saveReducer from './store/reducers/save';
 
@@ -20,8 +21,21 @@ const reducer = combineReducers({
   save: saveReducer
 });
 
+// Middleware
+const middleware = store => {
+  return next => {
+    return action => {
+      console.log(action)
+      return next(action)
+    }
+  }
+}
+
+// redux dev tools
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 // store
-const store = createStore(reducer);
+const store = createStore(reducer, composeEnhancers(applyMiddleware(middleware, thunk)));
 
 ReactDOM.render(
     <Provider store={store}>
