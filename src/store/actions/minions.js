@@ -21,7 +21,7 @@ export const createTeam = value => {
 
 export const destroyTeam = value => {
   return {
-    type: actionTypes.CREATE_TEAM,
+    type: actionTypes.DESTROY_TEAM,
     value: value,
   };
 };
@@ -37,6 +37,6 @@ export const autoEnroll = minions => {
   return dispatch => {
     setInterval(() => {
       dispatch(autoEnrollAsync(minions));
-    },3500);
+    }, 3500);
   };
 };
